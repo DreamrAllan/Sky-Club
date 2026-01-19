@@ -1,0 +1,34 @@
+{
+    frankenphp
+    order php_server before file_server
+}
+
+:8080 {
+    root * /app/public
+    
+    # Serve static files directly
+    @static {
+        path *.css *.js *.ico *.png *.jpg *.jpeg *.gif *.svg *.woff *.woff2 *.ttf *.eot
+    }
+    handle @static {
+        file_server
+    }
+    
+    # Serve build assets
+    handle /build/* {
+        file_server
+    }
+    
+    # Serve assets folder
+    handle /assets/* {
+        file_server
+    }
+    
+    # Serve storage folder
+    handle /storage/* {
+        file_server
+    }
+    
+    # All other requests go to PHP
+    php_server
+}
