@@ -2,20 +2,29 @@
 providers = ["php", "node"]
 
 [phases.setup]
-nixPkgs = ["php83", "nodejs_20", "npm"]
+nixPkgs = ["php83", "nodejs_20", "npm", "php83Extensions.pdo_sqlite", "php83Extensions.sqlite3"]
 
 [phases.install]
 cmds = [
-    "composer install --no-dev --optimize-autoloader",
-    "npm install"
+    "npm install",
+    "composer install --no-dev --optimize-autoloader"
 ]
 
 [phases.build]
 cmds = [
     "npm run build",
+    "mkdir -p /app/storage/framework/cache/data",
+    "mkdir -p /app/storage/framework/sessions",
+    "mkdir -p /app/storage/framework/views",
+    "mkdir -p /app/storage/logs",
+    "chmod -R 777 /app/storage",
+    "chmod -R 777 /app/bootstrap/cache",
+    "touch /app/database/database.sqlite",
     "php artisan config:clear",
-    "php artisan view:clear"
+    "php artisan view:clear",
+    "php artisan migrate --force",
+    "php artisan storage:link --force"
 ]
 
 [start]
-cmd = "php artisan migrate --force && php artisan storage:link --force && php artisan serve --host=0.0.0.0 --port=8080"
+cmd = "php artisan serve --host=0.0.0.0 --port=8080"
