@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Optional: just to hide the scrollbar */
+}
+
+.custom-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
+.hide-scrollbar::-webkit-scrollbar {
+display: none;
+}
+
+.hide-scrollbar {
+-ms-overflow-style: none; /* IE and Edge */
+scrollbar-width: none; /* Firefox */
+}
+
+#editorjs .codex-editor__redactor {
+    padding-bottom: 0 !important;
+}
