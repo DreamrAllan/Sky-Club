@@ -1,5 +1,9 @@
 {
     "version": 2,
+    "framework": null,
+    "buildCommand": "",
+    "installCommand": "composer install --no-dev --optimize-autoloader && npm install && npm run build",
+    "outputDirectory": "public",
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.1"
@@ -8,19 +12,19 @@
     "routes": [
         {
             "src": "/build/(.*)",
-            "dest": "/public/build/$1"
+            "dest": "/build/$1"
         },
         {
             "src": "/assets/(.*)",
-            "dest": "/public/assets/$1"
+            "dest": "/assets/$1"
         },
         {
             "src": "/storage/(.*)",
-            "dest": "/public/storage/$1"
+            "dest": "/storage/$1"
         },
         {
             "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
+            "dest": "/favicon.ico"
         },
         {
             "src": "/(.*)",
