@@ -1,12 +1,13 @@
 {
     "version": 2,
+    "framework": null,
     "builds": [
         {
             "src": "api/index.php",
             "use": "vercel-php@0.7.1"
         },
         {
-            "src": "public/**",
+            "src": "public/**/*",
             "use": "@vercel/static"
         }
     ],
@@ -24,8 +25,8 @@
             "dest": "/public/storage/$1"
         },
         {
-            "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
+            "src": "/(.*\\.(css|js|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$)",
+            "dest": "/public/$1"
         },
         {
             "src": "/(.*)",
